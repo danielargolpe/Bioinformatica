@@ -1,5 +1,6 @@
 # Bioinformatica
 Capacitación en Bioinformática Avanzada UBA
+
 Programa resumido:
 1. Uso de Biopython para análisis de secuencias
 2. Alineamiento de a pares (ADN/Proteínas)
