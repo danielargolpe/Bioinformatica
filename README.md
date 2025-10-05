@@ -1,7 +1,7 @@
 # Bioinformatica
 Capacitación en Bioinformática Avanzada UBA
 
-Programa resumido:
+Unidades temáticas abordadas:
 1. Uso de Biopython para análisis de secuencias
 2. Alineamiento de a pares (ADN/Proteínas)
 3. Alineamiento múltiple y árboles
@@ -11,3 +11,5 @@ Programa resumido:
 7. NGS Annotation & Web Scrapping
 8. Expresión génica
 9. Machine Learning
+
+Programas realizados para cada unidad temática utilizando Python/biopython
