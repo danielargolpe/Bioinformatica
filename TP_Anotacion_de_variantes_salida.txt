@@ -1,0 +1,179 @@
+
+--- INICIANDO PIPELINE DE ANÁLISIS ---
+Cargando VCF desde: /mnt/c/Backup_compu/INIDEP/CURSOS/Bioinformatica_avanzada/TP7/TP7_anotated.vcf
+Saltando 3595 líneas de metadatos '##'...
+VCF cargado. Parseando columnas INFO y FORMAT...
+
+--- CARGA EXITOSA ---
+Número inicial de variantes: 78047
+
+--- Bloque 2A: Análisis de Tipos de SNV (REF > ALT) ---
+
+Total de variantes en el VCF: 78047
+Número de SNVs puros encontrados: 65867
+
+--- Conteo de Tipos de SNV ---
+variant_type
+A>C     2381
+A>G    10788
+A>T     1551
+C>A     2506
+C>G     3376
+C>T    12220
+G>A    12272
+G>C     3393
+G>T     2392
+T>A     1636
+T>C    10987
+T>G     2365
+Name: count, dtype: int64
+
+--- Fracción de Tipos de SNV ---
+variant_type
+A>C     3.61 %
+A>G    16.38 %
+A>T     2.35 %
+C>A      3.8 %
+C>G     5.13 %
+C>T    18.55 %
+G>A    18.63 %
+G>C     5.15 %
+G>T     3.63 %
+T>A     2.48 %
+T>C    16.68 %
+T>G     3.59 %
+Name: proportion, dtype: object
+
+--- Análisis del Resultado: Ratio Transición/Transversión (Ts/Tv) ---
+Conteo de Transiciones vs. Transversiones:
+ts_tv_type
+Transition      46267
+Transversion    19600
+Name: count, dtype: int64
+
+** Ratio Ts/Tv (Transiciones / Transversiones): 2.361 **
+
+**Interpretación del Ratio Ts/Tv:**
+ * Para **exomas humanos**, se espera un ratio de ~3.0 (aprox. 2.8-3.3).
+ * Para **genomas completos humanos**, se espera un ratio de ~2.1.
+ * Un ratio muy bajo (ej. < 1.5) suele indicar un alto número de Falsos Positivos.
+
+--- Módulo (b): Análisis de Anotaciones de Variantes ---
+
+--- Nivel 1: Categorías Generales ---
+General_Category
+Intrónica    51.34 %
+Exónica      35.95 %
+Otro         12.71 %
+Name: proportion, dtype: object
+
+--- Nivel 2: Subcategorías Exónicas ---
+Exonic_Subcategory
+Silent          42.81 %
+Missense        41.14 %
+Otro_Exonico    15.71 %
+Nonsense         0.35 %
+Name: proportion, dtype: object
+
+--- Bloque 2 C): Análisis de Sustituciones Missense (Aminoácidos) ---
+Analizando 11543 variantes 'Missense'...
+
+--- Conteo de Sustituciones de Aminoácidos (Top 20) ---
+AA_Change
+Ala>Thr    365
+Val>Ile    338
+Ile>Val    295
+Thr>Ala    289
+Arg>Gln    281
+Ala>Val    269
+Arg>His    262
+Gln>Arg    231
+Val>Ala    229
+Pro>Leu    221
+His>Arg    204
+Leu>Pro    191
+Asn>Ser    182
+Pro>Ser    179
+Thr>Ile    173
+Met>Val    173
+Ser>Asn    171
+Val>Met    168
+Gly>Ser    165
+Ser>Pro    161
+Name: count, dtype: int64
+
+--- Fracción de Sustituciones de Aminoácidos (Top 20) ---
+AA_Change
+Ala>Thr    3.16
+Val>Ile    2.93
+Ile>Val    2.56
+Thr>Ala     2.5
+Arg>Gln    2.43
+Ala>Val    2.33
+Arg>His    2.27
+Gln>Arg     2.0
+Val>Ala    1.98
+Pro>Leu    1.91
+His>Arg    1.77
+Leu>Pro    1.65
+Asn>Ser    1.58
+Pro>Ser    1.55
+Thr>Ile     1.5
+Met>Val     1.5
+Ser>Asn    1.48
+Val>Met    1.46
+Gly>Ser    1.43
+Ser>Pro    1.39
+Name: proportion, dtype: object
+
+... (Total de 150 tipos de sustitución únicos encontrados) ...
+
+--- Bloque 2 D): Agregando anotaciones de gnomAD ---
+Cargando gnomAD CSV desde: /mnt/c/Backup_compu/INIDEP/CURSOS/Bioinformatica_avanzada/TP7/gnomAD_v2.1.1_ENST00000335295_2023_09_22_15_18_19.csv
+Armonizando prefijos de cromosomas (chr -> '')...
+Creando llaves únicas de variante para el merge...
+Realizando el 'merge' (left join) entre el VCF y gnomAD...
+ Merge completado.
+
+--- DIAGNÓSTICO: COLUMNAS MERGEADAS ---
+['CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', ('INFO', 'AC'), ('INFO', 'AF'), ('INFO', 'AN'), ('INFO', 'DB'), ('INFO', 'DP'), ('INFO', 'ExcessHet'), ('INFO', 'FS'), ('INFO', 'MLEAC'), ('INFO', 'MLEAF'), ('INFO', 'MQ'), ('INFO', 'QD'), ('INFO', 'SOR'), ('INFO', 'ANN'), ('INFO', 'SNPEFF_ALLELE'), ('INFO', 'SNPEFF_EFFECT'), ('INFO', 'SNPEFF_IMPACT'), ('INFO', 'SNPEFF_GENE_NAME'), ('INFO', 'SNPEFF_GENE_ID'), ('INFO', 'SNPEFF_TRANSCRIPT_ID'), ('INFO', 'SNPEFF_GENE_BIOTYPE'), ('INFO', 'SNPEFF_EXON_ID'), ('INFO', 'SNPEFF_EXON_COUNT'), ('INFO', 'SNPEFF_CODON_CHANGE'), ('INFO', 'SNPEFF_AMINO_ACID_CHANGE'), ('INFO', 'SNPEFF_FUNCTIONAL_CLASS'), ('INFO', 'ASP'), ('INFO', 'G5'), ('INFO', 'G5A'), ('INFO', 'GENEINFO'), ('INFO', 'REF'), ('INFO', 'RS'), ('INFO', 'RSPOS'), ('INFO', 'S3D'), ('INFO', 'SAO'), ('INFO', 'SLO'), ('INFO', 'SSR'), ('INFO', 'SYN'), ('INFO', 'TOPMED'), ('INFO', 'VC'), ('INFO', 'VLD'), ('INFO', 'VP'), ('INFO', 'WGT'), ('INFO', 'dbSNPBuildID'), ('INFO', 'SNP'), ('INFO', 'HOM'), ('INFO', 'VARTYPE'), ('INFO', 'SAI_DIST'), ('INFO', 'SAI_DP_AG'), ('INFO', 'SAI_DP_AL'), ('INFO', 'SAI_DP_DG'), ('INFO', 'SAI_DP_DL'), ('INFO', 'SAI_DS_AG'), ('INFO', 'SAI_DS_AL'), ('INFO', 'SAI_DS_DG'), ('INFO', 'SAI_DS_DL'), ('INFO', 'SAI_STRAND'), ('INFO', 'SAI_SYMBOL'), ('INFO', 'SAI_TYPE'), ('INFO', 'AAChange.ensGene'), ('INFO', 'AAChange.knownGene'), ('INFO', 'AAChange.refGene'), ('INFO', 'ExonicFunc.ensGene'), ('INFO', 'ExonicFunc.knownGene'), ('INFO', 'ExonicFunc.refGene'), ('INFO', 'Func.ensGene'), ('INFO', 'Func.knownGene'), ('INFO', 'Func.refGene'), ('INFO', 'Gene.ensGene'), ('INFO', 'Gene.knownGene'), ('INFO', 'Gene.refGene'), ('INFO', 'InterVarEvidence'), ('INFO', 'InterVarVeredict'), ('INFO', 'gnomAD_exome_ALL'), ('INFO', 'gnomAD_genome_ALL'), ('INFO', 'gnomad312_AF_faf95_popmax'), ('INFO', 'ACMG_BAYESIAN_SCORE'), ('INFO', 'ACMG_BAYESIAN_VEREDICT'), ('INFO', 'GNO'), ('INFO', 'KGPhase1'), ('INFO', 'NSM'), ('INFO', 'RV'), ('INFO', 'BayesDel_addAF_pred'), ('INFO', 'BayesDel_addAF_score'), ('INFO', 'CADD_phred'), ('INFO', 'CADD_raw'), ('INFO', 'CADD_raw_rankscore'), ('INFO', 'DANN_rankscore'), ('INFO', 'DANN_score'), ('INFO', 'FATHMM_converted_rankscore'), ('INFO', 'FATHMM_pred'), ('INFO', 'FATHMM_score'), ('INFO', 'GERP++_RS'), ('INFO', 'GERP++_RS_rankscore'), ('INFO', 'LRT_converted_rankscore'), ('INFO', 'LRT_pred'), ('INFO', 'LRT_score'), ('INFO', 'MetaSVM_score'), ('INFO', 'MutationTaster_converted_rankscore'), ('INFO', 'MutationTaster_pred'), ('INFO', 'MutationTaster_score'), ('INFO', 'PROVEAN_converted_rankscore'), ('INFO', 'PROVEAN_pred'), ('INFO', 'PROVEAN_score'), ('INFO', 'Polyphen2_HDIV_pred'), ('INFO', 'Polyphen2_HDIV_rankscore'), ('INFO', 'Polyphen2_HDIV_score'), ('INFO', 'Polyphen2_HVAR_pred'), ('INFO', 'Polyphen2_HVAR_rankscore'), ('INFO', 'Polyphen2_HVAR_score'), ('INFO', 'REVEL_score'), ('INFO', 'SIFT_converted_rankscore'), ('INFO', 'SIFT_pred'), ('INFO', 'SIFT_score'), ('INFO', 'phastCons100way_vertebrate'), ('INFO', 'phastCons100way_vertebrate_rankscore'), ('INFO', 'phyloP100way_vertebrate'), ('INFO', 'phyloP100way_vertebrate_rankscore'), ('INFO', 'CAF'), ('INFO', 'COMMON'), ('INFO', 'INT'), ('INFO', 'KGPhase3'), ('INFO', 'BaseQRankSum'), ('INFO', 'MQRankSum'), ('INFO', 'ReadPosRankSum'), ('INFO', 'INS'), ('INFO', 'HD'), ('INFO', 'CLNDISDB'), ('INFO', 'CLNDN'), ('INFO', 'CLNHGVS'), ('INFO', 'CLNREVSTAT'), ('INFO', 'CLNSIG'), ('INFO', 'CLNVC'), ('INFO', 'CLNVCSO'), ('INFO', 'MC'), ('INFO', 'ORIGIN'), ('INFO', 'HET'), ('INFO', 'dbscSNV_ADA_SCORE'), ('INFO', 'dbscSNV_RF_SCORE'), ('INFO', 'R3'), ('INFO', 'CR'), ('INFO', 'GentrainScore'), ('INFO', 'HW'), ('INFO', 'R5'), ('INFO', 'U5'), ('INFO', 'GeneDetail.ensGene'), ('INFO', 'GeneDetail.knownGene'), ('INFO', 'GeneDetail.refGene'), ('INFO', 'NOV'), ('INFO', 'PM'), ('INFO', 'PMC'), ('INFO', 'LSD'), ('INFO', 'DEL'), ('INFO', 'U3'), ('INFO', 'NSN'), ('INFO', 'cosmic70'), ('INFO', 'MTP'), ('INFO', 'DSS'), ('INFO', 'M-CAP_pred'), ('INFO', 'M-CAP_rankscore'), ('INFO', 'M-CAP_score'), ('INFO', 'MAA'), ('INFO', 'OM'), ('INFO', 'TPA'), ('INFO', 'LOF'), ('INFO', 'NOC'), ('INFO', 'NSF'), ('INFO', 'ReverseComplementedAlleles'), ('INFO', 'NMD'), ('INFO', 'OTH'), ('INFO', 'CLNDNINCL'), ('INFO', 'ASS'), ('INFO', 'CFL'), ('SAMPLE1', 'GT'), ('SAMPLE1', 'AD'), ('SAMPLE1', 'DP'), ('SAMPLE1', 'GQ'), ('SAMPLE1', 'PL'), 'Consequence', 'General_Category', 'Exonic_Subcategory', 'ClinVar Clinical Significance', 'Allele Frequency', 'Homozygote Count']
+
+--- LISTA COMPLETA DE COLUMNAS DEL DATAFRAME FINAL ---
+['CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', ('INFO', 'AC'), ('INFO', 'AF'), ('INFO', 'AN'), ('INFO', 'DB'), ('INFO', 'DP'), ('INFO', 'ExcessHet'), ('INFO', 'FS'), ('INFO', 'MLEAC'), ('INFO', 'MLEAF'), ('INFO', 'MQ'), ('INFO', 'QD'), ('INFO', 'SOR'), ('INFO', 'ANN'), ('INFO', 'SNPEFF_ALLELE'), ('INFO', 'SNPEFF_EFFECT'), ('INFO', 'SNPEFF_IMPACT'), ('INFO', 'SNPEFF_GENE_NAME'), ('INFO', 'SNPEFF_GENE_ID'), ('INFO', 'SNPEFF_TRANSCRIPT_ID'), ('INFO', 'SNPEFF_GENE_BIOTYPE'), ('INFO', 'SNPEFF_EXON_ID'), ('INFO', 'SNPEFF_EXON_COUNT'), ('INFO', 'SNPEFF_CODON_CHANGE'), ('INFO', 'SNPEFF_AMINO_ACID_CHANGE'), ('INFO', 'SNPEFF_FUNCTIONAL_CLASS'), ('INFO', 'ASP'), ('INFO', 'G5'), ('INFO', 'G5A'), ('INFO', 'GENEINFO'), ('INFO', 'REF'), ('INFO', 'RS'), ('INFO', 'RSPOS'), ('INFO', 'S3D'), ('INFO', 'SAO'), ('INFO', 'SLO'), ('INFO', 'SSR'), ('INFO', 'SYN'), ('INFO', 'TOPMED'), ('INFO', 'VC'), ('INFO', 'VLD'), ('INFO', 'VP'), ('INFO', 'WGT'), ('INFO', 'dbSNPBuildID'), ('INFO', 'SNP'), ('INFO', 'HOM'), ('INFO', 'VARTYPE'), ('INFO', 'SAI_DIST'), ('INFO', 'SAI_DP_AG'), ('INFO', 'SAI_DP_AL'), ('INFO', 'SAI_DP_DG'), ('INFO', 'SAI_DP_DL'), ('INFO', 'SAI_DS_AG'), ('INFO', 'SAI_DS_AL'), ('INFO', 'SAI_DS_DG'), ('INFO', 'SAI_DS_DL'), ('INFO', 'SAI_STRAND'), ('INFO', 'SAI_SYMBOL'), ('INFO', 'SAI_TYPE'), ('INFO', 'AAChange.ensGene'), ('INFO', 'AAChange.knownGene'), ('INFO', 'AAChange.refGene'), ('INFO', 'ExonicFunc.ensGene'), ('INFO', 'ExonicFunc.knownGene'), ('INFO', 'ExonicFunc.refGene'), ('INFO', 'Func.ensGene'), ('INFO', 'Func.knownGene'), ('INFO', 'Func.refGene'), ('INFO', 'Gene.ensGene'), ('INFO', 'Gene.knownGene'), ('INFO', 'Gene.refGene'), ('INFO', 'InterVarEvidence'), ('INFO', 'InterVarVeredict'), ('INFO', 'gnomAD_exome_ALL'), ('INFO', 'gnomAD_genome_ALL'), ('INFO', 'gnomad312_AF_faf95_popmax'), ('INFO', 'ACMG_BAYESIAN_SCORE'), ('INFO', 'ACMG_BAYESIAN_VEREDICT'), ('INFO', 'GNO'), ('INFO', 'KGPhase1'), ('INFO', 'NSM'), ('INFO', 'RV'), ('INFO', 'BayesDel_addAF_pred'), ('INFO', 'BayesDel_addAF_score'), ('INFO', 'CADD_phred'), ('INFO', 'CADD_raw'), ('INFO', 'CADD_raw_rankscore'), ('INFO', 'DANN_rankscore'), ('INFO', 'DANN_score'), ('INFO', 'FATHMM_converted_rankscore'), ('INFO', 'FATHMM_pred'), ('INFO', 'FATHMM_score'), ('INFO', 'GERP++_RS'), ('INFO', 'GERP++_RS_rankscore'), ('INFO', 'LRT_converted_rankscore'), ('INFO', 'LRT_pred'), ('INFO', 'LRT_score'), ('INFO', 'MetaSVM_score'), ('INFO', 'MutationTaster_converted_rankscore'), ('INFO', 'MutationTaster_pred'), ('INFO', 'MutationTaster_score'), ('INFO', 'PROVEAN_converted_rankscore'), ('INFO', 'PROVEAN_pred'), ('INFO', 'PROVEAN_score'), ('INFO', 'Polyphen2_HDIV_pred'), ('INFO', 'Polyphen2_HDIV_rankscore'), ('INFO', 'Polyphen2_HDIV_score'), ('INFO', 'Polyphen2_HVAR_pred'), ('INFO', 'Polyphen2_HVAR_rankscore'), ('INFO', 'Polyphen2_HVAR_score'), ('INFO', 'REVEL_score'), ('INFO', 'SIFT_converted_rankscore'), ('INFO', 'SIFT_pred'), ('INFO', 'SIFT_score'), ('INFO', 'phastCons100way_vertebrate'), ('INFO', 'phastCons100way_vertebrate_rankscore'), ('INFO', 'phyloP100way_vertebrate'), ('INFO', 'phyloP100way_vertebrate_rankscore'), ('INFO', 'CAF'), ('INFO', 'COMMON'), ('INFO', 'INT'), ('INFO', 'KGPhase3'), ('INFO', 'BaseQRankSum'), ('INFO', 'MQRankSum'), ('INFO', 'ReadPosRankSum'), ('INFO', 'INS'), ('INFO', 'HD'), ('INFO', 'CLNDISDB'), ('INFO', 'CLNDN'), ('INFO', 'CLNHGVS'), ('INFO', 'CLNREVSTAT'), ('INFO', 'CLNSIG'), ('INFO', 'CLNVC'), ('INFO', 'CLNVCSO'), ('INFO', 'MC'), ('INFO', 'ORIGIN'), ('INFO', 'HET'), ('INFO', 'dbscSNV_ADA_SCORE'), ('INFO', 'dbscSNV_RF_SCORE'), ('INFO', 'R3'), ('INFO', 'CR'), ('INFO', 'GentrainScore'), ('INFO', 'HW'), ('INFO', 'R5'), ('INFO', 'U5'), ('INFO', 'GeneDetail.ensGene'), ('INFO', 'GeneDetail.knownGene'), ('INFO', 'GeneDetail.refGene'), ('INFO', 'NOV'), ('INFO', 'PM'), ('INFO', 'PMC'), ('INFO', 'LSD'), ('INFO', 'DEL'), ('INFO', 'U3'), ('INFO', 'NSN'), ('INFO', 'cosmic70'), ('INFO', 'MTP'), ('INFO', 'DSS'), ('INFO', 'M-CAP_pred'), ('INFO', 'M-CAP_rankscore'), ('INFO', 'M-CAP_score'), ('INFO', 'MAA'), ('INFO', 'OM'), ('INFO', 'TPA'), ('INFO', 'LOF'), ('INFO', 'NOC'), ('INFO', 'NSF'), ('INFO', 'ReverseComplementedAlleles'), ('INFO', 'NMD'), ('INFO', 'OTH'), ('INFO', 'CLNDNINCL'), ('INFO', 'ASS'), ('INFO', 'CFL'), ('SAMPLE1', 'GT'), ('SAMPLE1', 'AD'), ('SAMPLE1', 'DP'), ('SAMPLE1', 'GQ'), ('SAMPLE1', 'PL'), 'Consequence', 'General_Category', 'Exonic_Subcategory', 'ClinVar Clinical Significance', 'Allele Frequency', 'Homozygote Count']
+
+--- DIAGNÓSTICO: COLUMNAS AF ---
+Valores de gnomAD AF ('INFO', 'gnomAD_genome_ALL'):
+0    0.6291
+1    0.8460
+2    0.9603
+3    0.5009
+4    0.5620
+5    0.9270
+6    0.8921
+7    0.9998
+8    0.0160
+9    0.0805
+Name: (INFO, gnomAD_genome_ALL), dtype: float64
+Tipo de dato de gnomAD AF: float64
+
+Valores de VCF AF ('INFO', 'AF'):
+0    1.0
+1    1.0
+2    1.0
+3    1.0
+4    1.0
+5    1.0
+6    1.0
+7    1.0
+8    0.5
+9    0.5
+Name: (INFO, AF), dtype: float64
+Tipo de dato de VCF AF: float64
+
+--- Bloque II E): Comparación Gráfica de Frecuencias ---
+Graficando 77394 puntos de datos...
+ Gráfico de comparación de frecuencias generado con éxito.
+
+--- PIPELINE COMPLETADO ---
+Visualiza el gráfico y revisa las columnas añadidas en el DataFrame.
+Columnas finales (ejemplo de gnomAD): ['ClinVar Clinical Significance', 'Allele Frequency', 'Homozygote Count']
